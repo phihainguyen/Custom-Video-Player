@@ -47,7 +47,12 @@ function scrub(e) {
 //========Handling Progess==============//
 video.addEventListener("timeupdate", handleProgress);
 //time update is an event which allows us to listen for time updates or when the video is updating its time code, similarly you can use PROGRESS as an event listener for this both progress/timeupdate will do the same thing
+let mouseDown = false;
 progress.addEventListener("click", scrub);
+progress.addEventListener("mousemove", e => mouseDown && scrub(e));
+progress.addEventListener("mousedown", () => (mouseDown = true));
+progress.addEventListener("mouseup", () => (mouseDown = false));
+
 //========Pausing/Playing================//
 video.addEventListener("click", togglePlay);
 toggle.addEventListener("click", togglePlay);
