@@ -1,11 +1,21 @@
 const player = document.querySelector(".player");
+const screen = document.getElementsByClassName("player");
 const video = player.querySelector(".viewer");
 const progress = player.querySelector(".progress");
 const progressBar = player.querySelector(".progress__filled");
 const toggle = player.querySelector(".toggle");
 const skipButtons = player.querySelectorAll("[data-skip]");
 const ranges = player.querySelectorAll(".player__slider");
+const screenSize = player.querySelector(".screenSize");
 
+function size(e) {
+  console.log("ehelesfn");
+  if (!e.fullScreenElement) {
+    player.requestFullscreen();
+  } else {
+    player.exitFullscreen();
+  }
+}
 function togglePlay() {
   const action = video.paused ? "play" : "pause";
   video[action]();
@@ -68,3 +78,6 @@ skipButtons.forEach(button => button.addEventListener("click", skip));
 //==============Sliders/range===============//
 ranges.forEach(range => range.addEventListener("change", sliders));
 //===VOLUME====//
+
+//===========Screen Size================//
+screenSize.addEventListener("click", size);
